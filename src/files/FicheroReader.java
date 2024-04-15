@@ -10,7 +10,7 @@ public class FicheroReader {
 
 	public static ArrayList<Float> procesarDatos(String fichero) {
 
-		DataProcesor dp = new DataProcesor();
+		ArrayList<Float> datos = new ArrayList<Float>();
 		try {
 			
 			// enlaza con un fichero usando las clases de Java
@@ -23,8 +23,12 @@ public class FicheroReader {
 			while (linea != null) {
 
 				// Procesamos la línea leída
-				dp.procesarLinea(linea,numeroLinea++);
-
+				float resultado = DataProcesor.procesarLinea(linea,numeroLinea++);
+				if(resultado >=0 ) {
+					
+					datos.add(resultado);
+				}
+				
 				// leemos otra línea
 				linea = ficheroEntrada.readLine();
 			}
@@ -37,7 +41,7 @@ public class FicheroReader {
 			e.printStackTrace();
 		}
 		
-		return dp.getDatos();
+		return datos;
 	}	
 	
 }
